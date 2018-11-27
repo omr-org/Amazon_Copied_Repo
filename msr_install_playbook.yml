@@ -1,0 +1,12 @@
+---
+- name: Installing the Softwares NVM,Node,Docker,Docker-Compose,Openssl,Git
+  hosts: all
+  user: ansible
+  become: yes
+  become_method: sudo
+  vars:
+  - package: ["python-apt","vim","git"]
+  tasks:
+  - name: Installing Package "{{ package }}"
+    apt: name={{ package }} state=latest
+    with_items: "{{ package  }}"
